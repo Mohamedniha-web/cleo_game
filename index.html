@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleo Cosmetics Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .game-container {
+            position: relative;
+            width: 80%;
+            height: 80%;
+            border: 2px solid #ccc;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .cleo-package {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: #333;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <img src="Z:\Cleo.jpg" alt="Cleo Package" class="cleo-package" id="cleo">
+        <div class="message" id="message">You won 50% off!</div>
+    </div>
+
+    <script>
+        const cleo = document.getElementById('cleo');
+        const message = document.getElementById('message');
+        const container = document.querySelector('.game-container');
+
+        // Randomly position the Cleo package
+        function moveCleo() {
+            const x = Math.random() * (container.clientWidth - cleo.offsetWidth);
+            const y = Math.random() * (container.clientHeight - cleo.offsetHeight);
+            cleo.style.left = `${x}px`;
+            cleo.style.top = `${y}px`;
+        }
+
+        // Move the Cleo package every second
+        setInterval(moveCleo, 1000);
+
+        // Handle click event
+        cleo.addEventListener('click', () => {
+            message.style.display = 'block'; // Show the message
+            cleo.style.display = 'none';     // Hide the Cleo package
+        });
+
+        // Initialize position
+        moveCleo();
+    </script>
+</body>
+</html>
